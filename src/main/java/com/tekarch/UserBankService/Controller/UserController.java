@@ -1,5 +1,6 @@
 
 package com.tekarch.UserBankService.Controller;
+import com.tekarch.UserBankService.DTO.AccountDTO;
 import com.tekarch.UserBankService.Models.User;
 import com.tekarch.UserBankService.Services.UserServiceImpl;
 import lombok.AllArgsConstructor;
@@ -97,6 +98,33 @@ public class UserController {
         logger.info("Deleted KYC details for user ID: {}", userId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @PostMapping("/users/{userId}/accounts")
+    public ResponseEntity<AccountDTO> addLinkedAccount(@PathVariable Long userId, @RequestBody AccountDTO account) {
+        AccountDTO createdAccount = userServiceImpl.addLinkedAccount(userId, account);
+        return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/users/{userId}/accounts")
+    public ResponseEntity<List<AccountDTO>> getLinkedAccounts(@PathVariable Long userId) {
+        List<AccountDTO> accounts = userServiceImpl.getLinkedAccounts(userId);
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
+    }
+
+    @PutMapping("/users/{userId}/accounts/{accountId}")
+    public ResponseEntity<AccountDTO> updateLinkedAccount(
+            @PathVariable Long userId,
+            @PathVariable Long accountId,
+            @RequestBody AccountDTO account) {
+        AccountDTO updatedAccount = userServiceImpl.updateLinkedAccount(userId, accountId, account);
+        return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/users/{userId}/accounts/{accountId}")
+    public ResponseEntity<Void> deleteLinkedAccount(@PathVariable Long userId, @PathVariable Long accountId) {
+        userServiceImpl.deleteLinkedAccount(userId, accountId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
     // Exception Handler
     @ExceptionHandler(Exception.class)

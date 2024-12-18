@@ -1,5 +1,6 @@
 package com.tekarch.UserBankService.Services.Interface;
 
+import com.tekarch.UserBankService.DTO.AccountDTO;
 import com.tekarch.UserBankService.Models.User;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface UserService {
    // User getKycDetail(Long userId);
     void deleteKycDetail(Long userId);
     User updateUserKycDetails(Long userId,User updatedUser);
+    AccountDTO addLinkedAccount(Long userId, AccountDTO account);
+    List<AccountDTO> getLinkedAccounts(Long userId);
+    AccountDTO updateLinkedAccount(Long userId, Long accountId, AccountDTO account);
+    void deleteLinkedAccount(Long userId, Long accountId);
 }
