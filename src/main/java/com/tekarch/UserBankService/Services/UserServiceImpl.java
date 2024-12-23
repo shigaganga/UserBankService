@@ -22,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private static final String ACCOUNT_MS_URL = "http://localhost:8091/accounts";
+    private static final String ACCOUNT_MS_URL = "http://localhost:9093/accounts";
     private final RestTemplate restTemplate;
     private static final Logger logger= LogManager.getLogger(UserController.class);
 
