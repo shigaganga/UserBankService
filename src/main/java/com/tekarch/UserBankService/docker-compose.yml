@@ -1,1 +1,25 @@
 
+version: '3.8'
+services:
+  usermicroservice:
+    image: usermicroservice
+    networks:
+      - bank-network
+
+  accountservice:
+    image: accountservice
+    depends_on:
+      - usermicroservice
+    networks:
+      - bank-network
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Kanmani.2018
+    networks:
+      - bank-network
+
+networks:
+  bank-network:
+    driver: bridge
