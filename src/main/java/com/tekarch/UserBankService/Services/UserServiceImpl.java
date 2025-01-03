@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
 
-    @Value("${account.ms.url:http://localhost:8081/accounts}")
+    @Value("${account.ms.url}")
     private String accountMsUrl;
 
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
